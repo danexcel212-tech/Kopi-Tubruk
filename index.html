@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Dashboard Pabrik — Kopi Tubruk Gajah</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+
+</style>
+</head>
+<body>
+
+  <!-- Icon sprite (referenced with <use>) -->
+  <svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="i-cup" viewBox="0 0 24 24">
+      <path d="M4.5 10h11v4a4.5 4.5 0 0 1-4.5 4.5H9A4.5 4.5 0 0 1 4.5 14v-4z"/>
+      <path d="M15.5 11H17a2.2 2.2 0 0 1 0 4.4h-1.5"/>
+      <path d="M8 4.5v2M12 4.5v2"/>
+    </symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24">
+      <rect x="3.5" y="3.5" width="7" height="7" rx="2"/>
+      <rect x="13.5" y="3.5" width="7" height="7" rx="2"/>
+      <rect x="3.5" y="13.5" width="7" height="7" rx="2"/>
+      <rect x="13.5" y="13.5" width="7" height="7" rx="2"/>
+    </symbol>
+    <symbol id="i-box" viewBox="0 0 24 24">
+      <path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/>
+      <path d="M4 7.5l8 4.5 8-4.5M12 12v9"/>
+    </symbol>
+    <symbol id="i-warehouse" viewBox="0 0 24 24">
+      <path d="M3 20V9.5L12 4l9 5.5V20"/>
+      <path d="M7.5 20v-6.5h9V20M7.5 16.7h9"/>
+    </symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24">
+      <path d="M2.5 6.5h10v9h-10z"/>
+      <path d="M12.5 9.5h4l3 3v3h-7"/>
+      <circle cx="6.5" cy="17.5" r="1.8"/>
+      <circle cx="16.5" cy="17.5" r="1.8"/>
+    </symbol>
+    <symbol id="i-clipboard" viewBox="0 0 24 24">
+      <rect x="5" y="3.5" width="14" height="17" rx="2.5"/>
+      <path d="M9 8.5h6M9 12h6M9 15.5h3.5"/>
+    </symbol>
+    <symbol id="i-factory" viewBox="0 0 24 24">
+      <path d="M3.5 20V10.5l5 3v-3l5 3V4.5h4V20h-14z"/>
+      <path d="M7.5 17h2M12.5 17h2"/>
+    </symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24">
+      <path d="M4 4v16h16"/>
+      <path d="M8.5 16v-4M12.5 16V8M16.5 16v-6"/>
+    </symbol>
+    <symbol id="i-sliders" viewBox="0 0 24 24">
+      <path d="M4 7h9M18 7h2M4 17h2M11 17h9"/>
+      <circle cx="15.5" cy="7" r="2"/>
+      <circle cx="8.5" cy="17" r="2"/>
+    </symbol>
+    <symbol id="i-search" viewBox="0 0 24 24">
+      <circle cx="11" cy="11" r="6.5"/>
+      <path d="M16 16l4 4"/>
+    </symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24">
+      <path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2h-15L6 16z"/>
+      <path d="M10 21h4"/>
+    </symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24">
+      <path d="M12 4l9 16H3L12 4z"/>
+      <path d="M12 10v4M12 17.2v.1"/>
+    </symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24">
+      <path d="M6 9l6 6 6-6"/>
+    </symbol>
+  </svg>
+
+  <div class="app">
+
+    <!-- ============ SIDEBAR ============ -->
+    <aside class="sidebar">
+      <a class="brand" href="#">
+        <span class="brand-mark">
+          <svg class="icon" aria-hidden="true"><use href="#i-cup"/></svg>
+        </span>
+        <span class="brand-text">
+          <strong>Kopi Tubruk Gajah</strong>
+          <small>Stock Management</small>
+        </span>
+      </a>
+
+      <nav class="switcher" aria-label="Tampilan peran">
+        <a class="switcher-link is-active" href="#" aria-current="page">Pabrik</a>
+        <a class="switcher-link" href="#">Warehouse</a>
+        <a class="switcher-link" href="#">Toko</a>
+      </nav>
+
+      <nav class="nav" aria-label="Menu utama">
+        <ul>
+          <li>
+            <a class="nav-link is-active" href="#" aria-current="page">
+              <svg class="icon" aria-hidden="true"><use href="#i-grid"/></svg>
+              Dashboard
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="#">
+              <svg class="icon" aria-hidden="true"><use href="#i-box"/></svg>
+              Inventory Barang
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="#">
+              <svg class="icon" aria-hidden="true"><use href="#i-warehouse"/></svg>
+              Stok Warehouse
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="#">
+              <svg class="icon" aria-hidden="true"><use href="#i-truck"/></svg>
+              Pengiriman
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="#">
+              <svg class="icon" aria-hidden="true"><use href="#i-clipboard"/></svg>
+              Request Warehouse
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="#">
+              <svg class="icon" aria-hidden="true"><use href="#i-factory"/></svg>
+              Produksi
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="#">
+              <svg class="icon" aria-hidden="true"><use href="#i-chart"/></svg>
+              Laporan
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="#">
+              <svg class="icon" aria-hidden="true"><use href="#i-sliders"/></svg>
+              Pengaturan
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- ============ MAIN ============ -->
+    <div class="main">
+
+      <header class="topbar">
+        <label class="search">
+          <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
+          <input type="search" placeholder="Cari produk, SKU, warehouse…" aria-label="Cari produk, SKU, warehouse">
+        </label>
+
+        <div class="topbar-actions">
+          <button class="site-select" type="button">
+            <svg class="icon" aria-hidden="true"><use href="#i-factory"/></svg>
+            <span>Pabrik Pusat — Bogor</span>
+            <svg class="icon icon--sm" aria-hidden="true"><use href="#i-chevron"/></svg>
+          </button>
+
+          <button class="icon-btn has-dot" type="button" aria-label="Notifikasi, ada yang belum dibaca">
+            <svg class="icon" aria-hidden="true"><use href="#i-bell"/></svg>
+          </button>
+
+          <span class="avatar" role="img" aria-label="Akun AP">AP</span>
+        </div>
+      </header>
+
+      <main class="content">
+
+        <!-- Page heading -->
+        <div class="page-head">
+          <div>
+            <h1>Dashboard Pabrik</h1>
+            <p class="page-sub">Pantauan stok seluruh warehouse · update terakhir 28 Okt 2026, 09:00</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn btn--ghost" type="button">Unduh Laporan</button>
+            <button class="btn btn--primary" type="button">
+              <svg class="icon" aria-hidden="true"><use href="#i-truck"/></svg>
+              Buat Pengiriman
+            </button>
+          </div>
+        </div>
+
+        <!-- KPI cards -->
+        <section class="metrics" aria-label="Ringkasan stok">
+          <article class="card metric">
+            <div class="metric-head">
+              <h2 class="metric-label">Total Stok di Warehouse</h2>
+              <span class="pill pill--ok">+4,2%</span>
+            </div>
+            <p class="metric-value">12.480 krt</p>
+            <p class="metric-note">6 warehouse · 5 produk aktif</p>
+          </article>
+
+          <article class="card metric">
+            <div class="metric-head">
+              <h2 class="metric-label">Warehouse Perlu Dikirim</h2>
+              <span class="pill pill--alert">Early warning</span>
+            </div>
+            <p class="metric-value">4</p>
+            <p class="metric-note">1 kritis, 3 waspada</p>
+          </article>
+
+          <article class="card metric">
+            <div class="metric-head">
+              <h2 class="metric-label">Dalam Pengiriman</h2>
+              <span class="pill pill--info">On the way</span>
+            </div>
+            <p class="metric-value">1.920 krt</p>
+            <p class="metric-note">6 truk · tiba 1–2 hari</p>
+          </article>
+
+          <article class="card metric">
+            <div class="metric-head">
+              <h2 class="metric-label">Stok Gudang Pabrik</h2>
+              <span class="pill pill--neutral">+2.400 produksi</span>
+            </div>
+            <p class="metric-value">8.650 krt</p>
+            <p class="metric-note">Siap kirim setelah alokasi</p>
+          </article>
+        </section>
+
+        <!-- Row: early warning + capacity -->
+        <div class="board">
+
+          <section class="card card--flush" aria-labelledby="ew-title">
+            <header class="card-head card-head--row">
+              <span class="alert-badge">
+                <svg class="icon" aria-hidden="true"><use href="#i-alert"/></svg>
+              </span>
+              <div class="card-head-text">
+                <h2 id="ew-title" class="card-title">Early Warning — Warehouse Perlu Dikirim</h2>
+                <p class="card-sub">Ketahanan stok = stok warehouse ÷ rata-rata barang keluar per hari (dari order toko 14 hari terakhir)</p>
+              </div>
+              <a class="link" href="#">Lihat semua</a>
+            </header>
+
+            <div class="table-scroll table-scroll--warning" role="region" aria-labelledby="ew-title" tabindex="0">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th scope="col" class="col-wh">Warehouse</th>
+                    <th scope="col" class="col-product">Produk</th>
+                    <th scope="col" class="col-stock num">Stok</th>
+                    <th scope="col" class="col-out num">Keluar/hari</th>
+                    <th scope="col" class="col-cover">Ketahanan</th>
+                    <th scope="col" class="col-status">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="is-critical">
+                    <th scope="row" class="cell-strong">WH Depok</th>
+                    <td>Kopi Tubruk Gajah 10×25g</td>
+                    <td class="num">84 krt</td>
+                    <td class="num">38 krt</td>
+                    <td>
+                      <div class="cover">
+                        <span class="cover-track"><span class="cover-fill cover-fill--crit w-15"></span></span>
+                        <span class="cover-text cover-text--crit">2,2 hari</span>
+                      </div>
+                    </td>
+                    <td><span class="pill pill--crit">Kritis</span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="cell-strong">WH Bandung</th>
+                    <td>Kopi Gula Aren 10×25g</td>
+                    <td class="num">150 krt</td>
+                    <td class="num">41 krt</td>
+                    <td>
+                      <div class="cover">
+                        <span class="cover-track"><span class="cover-fill cover-fill--warn w-25"></span></span>
+                        <span class="cover-text cover-text--warn">3,7 hari</span>
+                      </div>
+                    </td>
+                    <td><span class="pill pill--warn">Waspada</span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="cell-strong">WH Jakarta</th>
+                    <td>Kopi Bubuk 165g</td>
+                    <td class="num">420 krt</td>
+                    <td class="num">72 krt</td>
+                    <td>
+                      <div class="cover">
+                        <span class="cover-track"><span class="cover-fill cover-fill--warn w-38"></span></span>
+                        <span class="cover-text cover-text--warn">5,8 hari</span>
+                      </div>
+                    </td>
+                    <td><span class="pill pill--warn">Waspada</span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="cell-strong">WH Bekasi</th>
+                    <td>Kopi Susu 3in1 (renceng)</td>
+                    <td class="num">210 krt</td>
+                    <td class="num">33 krt</td>
+                    <td>
+                      <div class="cover">
+                        <span class="cover-track"><span class="cover-fill cover-fill--warn w-43"></span></span>
+                        <span class="cover-text cover-text--warn">6,4 hari</span>
+                      </div>
+                    </td>
+                    <td><span class="pill pill--warn">Waspada</span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="cell-strong">WH Tangerang</th>
+                    <td>Kopi Tubruk Gajah 10×25g</td>
+                    <td class="num">690 krt</td>
+                    <td class="num">45 krt</td>
+                    <td>
+                      <div class="cover">
+                        <span class="cover-track"><span class="cover-fill cover-fill--ok w-100"></span></span>
+                        <span class="cover-text cover-text--ok">15,3 hari</span>
+                      </div>
+                    </td>
+                    <td><span class="pill pill--ok">Aman</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="card" aria-labelledby="cap-title">
+            <h2 id="cap-title" class="card-title">Stok per Warehouse</h2>
+            <p class="card-sub">Total karton vs kapasitas gudang</p>
+
+            <ul class="capacity">
+              <li>
+                <div class="capacity-row">
+                  <span class="capacity-name">WH Jakarta</span>
+                  <span class="capacity-value">3.240 / 5.000 krt</span>
+                </div>
+                <div class="meter" role="progressbar" aria-label="Kapasitas WH Jakarta" aria-valuemin="0" aria-valuemax="5000" aria-valuenow="3240">
+                  <span class="meter-fill fill-jakarta"></span>
+                </div>
+              </li>
+              <li>
+                <div class="capacity-row">
+                  <span class="capacity-name">WH Bandung</span>
+                  <span class="capacity-value">2.180 / 4.000 krt</span>
+                </div>
+                <div class="meter" role="progressbar" aria-label="Kapasitas WH Bandung" aria-valuemin="0" aria-valuemax="4000" aria-valuenow="2180">
+                  <span class="meter-fill fill-bandung"></span>
+                </div>
+              </li>
+              <li>
+                <div class="capacity-row">
+                  <span class="capacity-name">WH Depok</span>
+                  <span class="capacity-value">1.120 / 3.000 krt</span>
+                </div>
+                <div class="meter" role="progressbar" aria-label="Kapasitas WH Depok, di bawah 40%" aria-valuemin="0" aria-valuemax="3000" aria-valuenow="1120">
+                  <span class="meter-fill meter-fill--low fill-depok"></span>
+                </div>
+              </li>
+              <li>
+                <div class="capacity-row">
+                  <span class="capacity-name">WH Bekasi</span>
+                  <span class="capacity-value">2.460 / 3.500 krt</span>
+                </div>
+                <div class="meter" role="progressbar" aria-label="Kapasitas WH Bekasi" aria-valuemin="0" aria-valuemax="3500" aria-valuenow="2460">
+                  <span class="meter-fill fill-bekasi"></span>
+                </div>
+              </li>
+              <li>
+                <div class="capacity-row">
+                  <span class="capacity-name">WH Tangerang</span>
+                  <span class="capacity-value">2.010 / 3.000 krt</span>
+                </div>
+                <div class="meter" role="progressbar" aria-label="Kapasitas WH Tangerang" aria-valuemin="0" aria-valuemax="3000" aria-valuenow="2010">
+                  <span class="meter-fill fill-tangerang"></span>
+                </div>
+              </li>
+              <li>
+                <div class="capacity-row">
+                  <span class="capacity-name">WH Bogor</span>
+                  <span class="capacity-value">1.470 / 2.500 krt</span>
+                </div>
+                <div class="meter" role="progressbar" aria-label="Kapasitas WH Bogor" aria-valuemin="0" aria-valuemax="2500" aria-valuenow="1470">
+                  <span class="meter-fill fill-bogor"></span>
+                </div>
+              </li>
+            </ul>
+
+            <ul class="key">
+              <li><span class="key-swatch key-swatch--normal"></span>Normal</li>
+              <li><span class="key-swatch key-swatch--low"></span>Di bawah 40%</li>
+            </ul>
+          </section>
+        </div>
+
+        <!-- Row: heatmap + shipments -->
+        <div class="board">
+
+          <section class="card card--flush" aria-labelledby="map-title">
+            <header class="card-head">
+              <h2 id="map-title" class="card-title">Peta Ketahanan Stok — Produk × Warehouse</h2>
+              <p class="card-sub">Angka = perkiraan hari sampai stok habis</p>
+            </header>
+
+            <div class="table-scroll table-scroll--map" role="region" aria-labelledby="map-title" tabindex="0">
+              <table class="data-table data-table--map">
+                <thead>
+                  <tr>
+                    <th scope="col" class="col-map-product">Produk</th>
+                    <th scope="col" class="center">Jakarta</th>
+                    <th scope="col" class="center">Bandung</th>
+                    <th scope="col" class="center">Depok</th>
+                    <th scope="col" class="center">Bekasi</th>
+                    <th scope="col" class="center">Tangerang</th>
+                    <th scope="col" class="center">Bogor</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row" class="cell-strong">Kopi Tubruk Gajah 10×25g</th>
+                    <td class="center"><span class="heat heat--ok">7,5</span></td>
+                    <td class="center"><span class="heat heat--ok">9,1</span></td>
+                    <td class="center"><span class="heat heat--crit">2,2</span></td>
+                    <td class="center"><span class="heat heat--ok">8,4</span></td>
+                    <td class="center"><span class="heat heat--ok">15,3</span></td>
+                    <td class="center"><span class="heat heat--ok">11,2</span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="cell-strong">Kopi Bubuk 165g</th>
+                    <td class="center"><span class="heat heat--warn">5,8</span></td>
+                    <td class="center"><span class="heat heat--ok">10,2</span></td>
+                    <td class="center"><span class="heat heat--warn">4,1</span></td>
+                    <td class="center"><span class="heat heat--ok">12</span></td>
+                    <td class="center"><span class="heat heat--ok">9,6</span></td>
+                    <td class="center"><span class="heat heat--ok">8,9</span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="cell-strong">Kopi Gula Aren 10×25g</th>
+                    <td class="center"><span class="heat heat--ok">14,8</span></td>
+                    <td class="center"><span class="heat heat--warn">3,7</span></td>
+                    <td class="center"><span class="heat heat--warn">6,5</span></td>
+                    <td class="center"><span class="heat heat--ok">11,3</span></td>
+                    <td class="center"><span class="heat heat--ok">10,1</span></td>
+                    <td class="center"><span class="heat heat--ok">13,4</span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="cell-strong">Kopi Susu 3in1 (renceng)</th>
+                    <td class="center"><span class="heat heat--ok">22,1</span></td>
+                    <td class="center"><span class="heat heat--ok">12,4</span></td>
+                    <td class="center"><span class="heat heat--ok">8</span></td>
+                    <td class="center"><span class="heat heat--warn">6,4</span></td>
+                    <td class="center"><span class="heat heat--ok">13,7</span></td>
+                    <td class="center"><span class="heat heat--ok">9,8</span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="cell-strong">Kopi Biji Robusta 1kg</th>
+                    <td class="center"><span class="heat heat--ok">29,5</span></td>
+                    <td class="center"><span class="heat heat--ok">18,2</span></td>
+                    <td class="center"><span class="heat heat--ok">15,6</span></td>
+                    <td class="center"><span class="heat heat--ok">20,3</span></td>
+                    <td class="center"><span class="heat heat--ok">25</span></td>
+                    <td class="center"><span class="heat heat--ok">17,6</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <ul class="legend">
+              <li><span class="pill pill--crit">&lt; 3 hari</span> Kritis</li>
+              <li><span class="pill pill--warn">3–7 hari</span> Waspada</li>
+              <li><span class="pill pill--ok">&gt; 7 hari</span> Aman</li>
+            </ul>
+          </section>
+
+          <section class="card" aria-labelledby="ship-title">
+            <h2 id="ship-title" class="card-title">Pengiriman ke Warehouse</h2>
+            <p class="card-sub">Karton per minggu, 8 minggu terakhir</p>
+
+            <ol class="chart" aria-label="Karton dikirim per minggu">
+              <li>
+                <span class="chart-value">1,4rb</span>
+                <span class="chart-bar bar-1"></span>
+              </li>
+              <li>
+                <span class="chart-value">1,6rb</span>
+                <span class="chart-bar bar-2"></span>
+              </li>
+              <li>
+                <span class="chart-value">1,4rb</span>
+                <span class="chart-bar bar-3"></span>
+              </li>
+              <li>
+                <span class="chart-value">1,7rb</span>
+                <span class="chart-bar bar-4"></span>
+              </li>
+              <li>
+                <span class="chart-value">1,6rb</span>
+                <span class="chart-bar bar-5"></span>
+              </li>
+              <li>
+                <span class="chart-value">1,8rb</span>
+                <span class="chart-bar bar-6"></span>
+              </li>
+              <li>
+                <span class="chart-value">1,8rb</span>
+                <span class="chart-bar bar-7"></span>
+              </li>
+              <li>
+                <span class="chart-value">1,9rb</span>
+                <span class="chart-bar bar-8"></span>
+              </li>
+            </ol>
+            <ol class="chart-axis" aria-hidden="true">
+              <li>M36</li>
+              <li>M37</li>
+              <li>M38</li>
+              <li>M39</li>
+              <li>M40</li>
+              <li>M41</li>
+              <li>M42</li>
+              <li>M43</li>
+            </ol>
+
+            <div class="chart-foot">
+              <span>Dalam perjalanan</span>
+              <strong>6 truk · 1.920 krt</strong>
+            </div>
+          </section>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>
